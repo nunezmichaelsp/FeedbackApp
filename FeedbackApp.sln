@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34701.34
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FeedbackApp.Web", "FeedbackApp.Web\FeedbackApp.Web.csproj", "{22FF02FF-1B57-49E8-B3F8-25AC288047DE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{168B45A6-4E99-484D-B3D8-9BAFEB1EA02E}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		README.md = README.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{22FF02FF-1B57-49E8-B3F8-25AC288047DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22FF02FF-1B57-49E8-B3F8-25AC288047DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22FF02FF-1B57-49E8-B3F8-25AC288047DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22FF02FF-1B57-49E8-B3F8-25AC288047DE}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3C6B5D53-1D20-4A37-A9E8-C1738676E1C0}
+	EndGlobalSection
+EndGlobal
