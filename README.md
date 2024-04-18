@@ -45,7 +45,9 @@ All of the keys presented in the `secrets.json` are not available in the `appset
 1. Clone the repository from GitHub with the previously provided link.
 2. Include User Secrets with the Sql server connection string to you your local server.
 3. Inside Visual studio, go to Package Manager Console, Select the Proyect FeedbackApp.Data as Default project.
-4. Run the command: Update-Database -StartupProject FeedbackApp
+4. Run the commands: 
+  Add-Migration InitialMigration -StartupProject FeedbackApp.Web
+  Update-Database -StartupProject FeedbackApp.Web
 5. Select Debug and HTTP config.
 6. Set `FeedbackApp.Web` as Starting project.
 7. Press F5 to start debugging (Press Ctrl+F5 to run without debugging).
