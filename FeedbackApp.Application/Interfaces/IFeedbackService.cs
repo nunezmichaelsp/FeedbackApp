@@ -9,6 +9,8 @@ namespace FeedbackApp.Application.Interfaces
     {
         Task<IEnumerable<FeedbackDto>> GetAllFeedbackAsync();
 
+        Task<FeedbackDto> GetByIdAsync(Guid id);
+
         Task<FeedbackDto> AddFeedbackAsync(FeedbackDto feedbackDto);
 
         Task UpdateFeedbackAsync(FeedbackDto feedbackDto);

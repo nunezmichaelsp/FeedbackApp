@@ -6,7 +6,8 @@
 		<UserSecretsId>aspnet-FeedbackApp.Web-61608fcc-16cd-43cf-a327-51a06db631ca</UserSecretsId>
 	</PropertyGroup>
 	<ItemGroup>
-        <PackageReference Include="AutoMapper" Version="13.0.1" />
+        <PackageReference Include="AutoMapper" Version="12.0.1" />
+        <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
         <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="8.0.4" />
         <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.4" />
         <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="8.0.3" />

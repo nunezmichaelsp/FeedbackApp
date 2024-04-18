@@ -21,13 +21,27 @@ namespace FeedbackApp.Application.Services
 
         public async Task<IEnumerable<FeedbackDto>> GetAllFeedbackAsync()
         {
-            var feedbacks = await this.feedbackRepository.GetAllAsync();
+            var feedbacks = (await this.feedbackRepository.GetAllAsync())
+                .OrderByDescending(f => f.SubmissionDate);
             return this.mapper.Map<IEnumerable<FeedbackDto>>(feedbacks);
+        }
+
+        public async Task<FeedbackDto> GetByIdAsync(Guid id)
+        {
+            var feedback = await this.feedbackRepository.GetByIdAsync(id);
+            if (feedback == null)
+            {
+                throw new KeyNotFoundException($"Feedback with ID {id} not found.");
+            }
+
+            return this.mapper.Map<FeedbackDto>(feedback);
         }
 
         public async Task<FeedbackDto> AddFeedbackAsync(FeedbackDto feedbackDto)
         {
             var feedback = this.mapper.Map<Feedback>(feedbackDto);
+            feedback.Id = Guid.NewGuid();
+            feedback.SubmissionDate = DateTime.UtcNow;
             await this.feedbackRepository.AddAsync(feedback);
             return this.mapper.Map<FeedbackDto>(feedback);
         }
@@ -46,6 +60,12 @@ namespace FeedbackApp.Application.Services
 
         public async Task DeleteFeedbackAsync(Guid feedbackId)
         {
+            var feedback = await this.feedbackRepository.GetByIdAsync(feedbackId);
+            if (feedback == null)
+            {
+                throw new InvalidOperationException($"Feedback not found with Id: {feedbackId}.");
+            }
+
             await this.feedbackRepository.DeleteAsync(feedbackId);
         }
     }
