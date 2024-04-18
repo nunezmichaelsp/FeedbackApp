@@ -1,7 +1,31 @@
 <Project>
-	<PropertyGroup>
-		<TargetFramework>net8.0</TargetFramework>
-		<LangVersion>latest</LangVersion>
-		<Nullable>disable</Nullable>
-	</PropertyGroup>
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <LangVersion>latest</LangVersion>
+        <RunCodeAnalysis>false</RunCodeAnalysis>
+        <NeutralLanguage>en</NeutralLanguage>
+        <Nullable>disable</Nullable>
+        <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+        <Authors>Michael Nunez</Authors>
+        <Company>Michael Nunez, Inc.</Company>
+        <Copyright>Copyright © 2024 Michael Nunez, Inc. All rights reserved.</Copyright>
+        <Product>Feedback App</Product>
+        <Version>0.0.1</Version>
+        <RepositoryType>git</RepositoryType>
+        <RepositoryUrl>https://github.com/nunezmichaelsp/CustomerFeedbackManagment</RepositoryUrl>
+        <PackageTags>CFM; Customer; Feedback; Manager; Customers; Customer Feedback Management;</PackageTags>
+        <IsPackable>true</IsPackable>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <AdditionalFiles Include="..\stylecop.json" />
+        <PackageReference Include="SonarAnalyzer.CSharp" Version="9.23.2.88755">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+        <PackageReference Include="StyleCop.Analyzers" Version="1.1.118">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </PackageReference>
+    </ItemGroup>
 </Project>
