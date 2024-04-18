@@ -1,6 +1,7 @@
-﻿namespace FeedbackApp.Web
+namespace FeedbackApp.Web
 {
     using System;
+    using FeedbackApp.Crosscutting.Configuration;
     using FeedbackApp.Web.Data;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
@@ -23,6 +24,10 @@
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services
+                .RegisterAutoMapper()
+                .AddServices();
+
             var connectionString = this.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(connectionString));
