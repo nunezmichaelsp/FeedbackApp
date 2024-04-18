@@ -7,6 +7,27 @@
 <h1>@ViewData["Title"]</h1>
 
 <div class="container">
+    <div class="dropdown mb-2">
+        <select class="form-control" id="customerNameFilter">
+            <option value="">Select Customer</option>
+        </select>
+    </div>
+
+    <div class="dropdown mb-2">
+        <select class="form-control" id="categoryFilter">
+            <option value="">Select Category</option>
+        </select>
+    </div>
+
+    <div class="mb-2">
+        <label>Submission Date Range</label>
+        <input type="text" id="fromDate" class="input-sm form-control"> to <input type="text" id="toDate" class="input-sm form-control">
+    </div>
+
+    <button class="btn btn-primary mb-2" id="btnSearch">Search</button>
+</div>
+
+<div class="container">
     <button class="btn btn-primary" style="float:right" id="btnAdd">Add Feedback</button>
 </div>
 

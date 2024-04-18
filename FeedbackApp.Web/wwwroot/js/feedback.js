@@ -1,5 +1,15 @@
 $(document).ready(function () {
     GetFeedbacks();
+    LoadCustomerNamesFilter();
+    LoadCategoriesFilter();
+
+    $('#btnSearch').click(function () {
+        SearchFeedbacks();
+    });
+
+    $("#datepicker").datepicker({
+        dateFormat: "dd-mm-yy"
+    });
 });
 
 function GetFeedbacks() {
@@ -64,6 +74,8 @@ function Insert() {
                 HideModal();
                 ClearData();
                 GetFeedbacks();
+                LoadCustomerNamesFilter();
+                LoadCategoriesFilter();
                 alert(response);
             }
         },
@@ -184,6 +196,8 @@ function Update() {
                 HideModal();
                 ClearData();
                 GetFeedbacks();
+                LoadCustomerNamesFilter();
+                LoadCategoriesFilter();
                 alert(response);
             }
         },
@@ -205,6 +219,8 @@ function Delete(feedbackId) {
                 }
                 else {
                     GetFeedbacks();
+                    LoadCustomerNamesFilter();
+                    LoadCategoriesFilter();
                     alert(response);
                 }
             },
@@ -215,3 +231,129 @@ function Delete(feedbackId) {
     }
 }
 
+function LoadCustomerNamesFilter() {
+    $.ajax({
+        url: '/Feedback/GetCustomerNames',
+        type: 'GET',
+        datatype: 'json',
+        contentType: 'application/json;charset=utf-8',
+        success: function (response) {
+            if (response != null && response != undefined && response.length > 0) {
+                $('#customerNameFilter').find('option:not(:first)').remove();
+
+                $.each(response, function (index, customer) {
+                    var option = $('<option>').val(customer).text(customer);
+                    $('#customerNameFilter').append(option);
+                });
+            } else {
+                $('#customerNameFilter').find('option:not(:first)').remove();
+            }
+        },
+        error: function () {
+            alert('Unable to read the customer names data.');
+        }
+    });
+}
+
+function LoadCategoriesFilter() {
+    $.ajax({
+        url: '/Feedback/GetCategories',
+        type: 'GET',
+        datatype: 'json',
+        contentType: 'application/json;charset=utf-8',
+        success: function (response) {
+            if (response != null && response != undefined && response.length > 0) {
+                $('#categoryFilter').find('option:not(:first)').remove();
+
+                $.each(response, function (index, customer) {
+                    var option = $('<option>').val(customer).text(customer);
+                    $('#categoryFilter').append(option);
+                });
+            } else {
+                $('#categoryFilter').find('option:not(:first)').remove();
+            }
+        },
+        error: function () {
+            alert('Unable to read the customer names data.');
+        },
+        error: function () {
+            alert('Unable to read the categories data.');
+        }
+    });
+}
+
+function SearchFeedbacks() {
+    var customerName = $('#customerNameFilter').val();
+    var category = $('#categoryFilter').val();
+    var startDate = $('#fromDate').val();
+    var endDate = $('#toDate').val();
+
+    // Realizar la búsqueda con los filtros aplicados
+    $.ajax({
+        url: '/Feedback/SearchFeedbacks',
+        type: 'GET',
+        data: {
+            customerName: customerName,
+            category: category,
+            startDate: startDate,
+            endDate: endDate
+        },
+        datatype: 'json',
+        contentType: 'application/json;charset=utf-8',
+        success: function (response) {
+            if (response == null || response == undefined || response.length == 0) {
+                var object = '';
+                object += '<tr>';
+                object += '<td colspan="5">' + 'No feedbacks found.' + '</td>';
+                object += '</tr>';
+                $('#tblBody').html(object)
+            }
+            else {
+                var object = '';
+                $.each(response, function (index, item) {
+                    object += '<tr>';
+                    object += '<td>' + item.customerName + '</td>';
+                    object += '<td>' + item.category + '</td>';
+                    object += '<td>' + item.description + '</td>';
+                    object += '<td>' + item.submissionDate + '</td>';
+                    object += '<td> <a href=# class="btn btn-primary btn-sm" onclick="Edit(\'' + item.id + '\')">Edit</a> <a href=# class="btn btn-danger btn-sm" onclick="Delete(\'' + item.id + '\')">Delete</a> </td>';
+                    object += '</tr>';
+                });
+                $('#tblBody').html(object)
+            }
+        },
+        error: function () {
+            alert('Unable to filter the data.');
+        }
+    });
+}
+
+$(function () {
+    var from = $("#fromDate")
+        .datepicker({
+            dateFormat: "yy-mm-dd",
+            changeMonth: true
+        })
+        .on("change", function () {
+            to.datepicker("option", "minDate", getDate(this));
+        }),
+        to = $("#toDate").datepicker({
+            dateFormat: "yy-mm-dd",
+            changeMonth: true
+        })
+            .on("change", function () {
+                from.datepicker("option", "maxDate", getDate(this));
+            });
+
+    function getDate(element) {
+        var date;
+        var dateFormat = "yy-mm-dd";
+        try {
+            date = $.datepicker.parseDate(dateFormat, element.value);
+        } catch (error) {
+            date = null;
+        }
+
+        return date;
+    }
+});

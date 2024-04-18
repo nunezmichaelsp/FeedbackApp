@@ -17,12 +17,13 @@ namespace FeedbackApp.Web.Controllers
             this.feedbackService = feedbackService;
         }
 
-        // GET: Feedback
+        [HttpGet]
         public IActionResult Index()
         {
             return this.View();
         }
 
+        [HttpGet]
         public async Task<JsonResult> GetFeedbacks()
         {
             var feedbacks = await this.feedbackService.GetAllFeedbackAsync();
@@ -82,6 +83,28 @@ namespace FeedbackApp.Web.Controllers
             }
 
             return this.Json("Feedback delete failed.");
+        }
+
+        [HttpGet]
+        public async Task<JsonResult> GetCustomerNames()
+        {
+            var customerNames = await this.feedbackService.GetCustomerNamesAsync();
+            return this.Json(customerNames);
+        }
+
+        [HttpGet]
+        public async Task<JsonResult> GetCategories()
+        {
+            var categories = await this.feedbackService.GetCategoriesAsync();
+            return this.Json(categories);
+        }
+
+        [HttpGet]
+        public async Task<JsonResult> SearchFeedbacks(string customerName, string category, DateTime? startDate, DateTime? endDate)
+        {
+            var searchFeedbacks = await this.feedbackService.SearchFeedbacksAsync(customerName, category, startDate, endDate);
+
+            return this.Json(searchFeedbacks);
         }
     }
 }
