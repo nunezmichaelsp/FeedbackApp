@@ -2,11 +2,8 @@ namespace FeedbackApp.Web
 {
     using System;
     using FeedbackApp.Crosscutting.Configuration;
-    using FeedbackApp.Web.Data;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
-    using Microsoft.AspNetCore.Identity;
-    using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
@@ -26,16 +23,11 @@ namespace FeedbackApp.Web
         {
             services
                 .RegisterAutoMapper()
-                .AddServices();
-
-            var connectionString = this.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
-            services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(connectionString));
-            services.AddDatabaseDeveloperPageExceptionFilter();
-
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
-            services.AddControllersWithViews();
+                .ConfigureDatabase(this.Configuration)
+                .AddRepositories()
+                .AddServices()
+                .AddIdentity()
+                .AddControllersWithViews();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

@@ -6,9 +6,11 @@
     </PropertyGroup>
     <ItemGroup>
         <PackageReference Include="AutoMapper" Version="13.0.1" />
+        <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="8.0.3" />
         <PackageReference Include="Serilog" Version="3.1.1" />
     </ItemGroup>
     <ItemGroup>
       <ProjectReference Include="..\FeedbackApp.Application\FeedbackApp.Application.csproj" />
+      <ProjectReference Include="..\FeedbackApp.Data\FeedbackApp.Data.csproj" />
     </ItemGroup>
 </Project>
