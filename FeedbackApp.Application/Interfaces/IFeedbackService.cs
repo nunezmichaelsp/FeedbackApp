@@ -17,9 +17,9 @@ namespace FeedbackApp.Application.Interfaces
 
         Task DeleteFeedbackAsync(Guid feedbackId);
 
-        Task<List<string?>> GetCustomerNamesAsync();
+        Task<List<string?>?> GetCustomerNamesAsync();
 
-        Task<List<string?>> GetCategoriesAsync();
+        Task<List<string?>?> GetCategoriesAsync();
 
         Task<IEnumerable<FeedbackDto>> SearchFeedbacksAsync(string customerName, string category, DateTime? startDate, DateTime? endDate);
     }
