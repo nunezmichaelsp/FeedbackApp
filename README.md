@@ -5,7 +5,9 @@ This project manages Feedback with Customer Name, Category and Description, for 
 ## Getting Started
 
 This project will be an update of the services related to the management of Feedbacks, using .NET core and MVC for the UI.
-https://github.com/nunezmichaelsp/CustomerFeedbackManagment
+
+https://github.com/nunezmichaelsp/FeedbackApp
+Branch: develop.
 
 ### Prerequisites
 
