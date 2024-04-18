@@ -39,6 +39,12 @@ namespace FeedbackApp.Crosscutting.Configuration
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
 
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.AccessDeniedPath = "/Identity/Account/Login";
+                options.LoginPath = "/Identity/Account/Login";
+            });
+
             return services;
         }
 

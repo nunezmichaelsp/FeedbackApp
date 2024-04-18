@@ -4,8 +4,10 @@ namespace FeedbackApp.Web.Controllers
     using System.Threading.Tasks;
     using FeedbackApp.Application.DTOs;
     using FeedbackApp.Application.Interfaces;
+    using Microsoft.AspNetCore.Authorization;
     using Microsoft.AspNetCore.Mvc;
 
+    [Authorize]
     public class FeedbackController : Controller
     {
         private readonly IFeedbackService feedbackService;
