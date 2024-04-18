@@ -12,7 +12,7 @@
         <Product>Feedback App</Product>
         <Version>0.0.1</Version>
         <RepositoryType>git</RepositoryType>
-        <RepositoryUrl>https://github.com/nunezmichaelsp/CustomerFeedbackManagment</RepositoryUrl>
+        <RepositoryUrl>https://github.com/nunezmichaelsp/FeedbackApp</RepositoryUrl>
         <PackageTags>CFM; Customer; Feedback; Manager; Customers; Customer Feedback Management;</PackageTags>
         <IsPackable>true</IsPackable>
     </PropertyGroup>
