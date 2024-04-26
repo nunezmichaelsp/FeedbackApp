@@ -16,7 +16,6 @@ Branch: develop.
 * .Net Core (Check the current version for this project [here](./Directory.Build.props))
 * [SQL Server Developer](https://www.microsoft.com/en-us/sql-server/sql-server-downloads)
 * [SQL Sever Management Studio](https://learn.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver16)
-* [NVM (Node Version Manager)](https://github.com/coreybutler/nvm-windows)
 
 ### Installing
 
@@ -46,11 +45,19 @@ All of the keys presented in the `secrets.json` are not available in the `appset
 2. Include User Secrets with the Sql server connection string to you your local server.
 3. Inside Visual studio, go to Package Manager Console, Select the Proyect FeedbackApp.Data as Default project.
 4. Run the commands: 
-  Add-Migration InitialMigration -StartupProject FeedbackApp.Web
-  Update-Database -StartupProject FeedbackApp.Web
+
+    Add-Migration InitialMigration -StartupProject FeedbackApp.Web
+
+    Update-Database -StartupProject FeedbackApp.Web
+
 5. Select Debug and HTTP config.
 6. Set `FeedbackApp.Web` as Starting project.
 7. Press F5 to start debugging (Press Ctrl+F5 to run without debugging).
+8. Register on the Application, additionaly after Registration, click on Click here to confirm account.
+   OR use SuperAdminTestUser credentials only in develeopment phase (this will be removed in production environment):
+
+    username: superadmin@domain.com
+    password: Abc123.
 
 ### Coding conventions
 
