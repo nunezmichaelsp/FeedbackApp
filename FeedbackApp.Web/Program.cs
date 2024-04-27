@@ -42,6 +42,7 @@ namespace FeedbackApp.Web
                         .AddEnvironmentVariables()
                         .AddUserSecrets<Startup>();
                 })
+                .UseSerilog((context, services, loggerConfiguration) => loggerConfiguration.ReadFrom.Configuration(context.Configuration))
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
